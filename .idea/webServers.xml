@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0f1b286c-7b11-4dcc-a11c-af45f74610be" name="Safaricom Agile" url="http://isobarke-staging.com">
+        <fileTransfer rootFolder="/domains/isobarke-staging.com/public_html/safaricom/websites/2021/safaricom_agile/" host="isobarke-staging.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
