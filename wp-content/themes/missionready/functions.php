@@ -1,5 +1,16 @@
 <?php
 
+function getInitials($name)
+{
+//split name using spaces
+    $words = explode(" ", $name);
+    $inits = '';
+//loop through array extracting initial letters
+    foreach ($words as $word) {
+        $inits .= strtoupper(substr($word, 0, 1));
+    }
+    return $inits;
+}
 
 if ( ! function_exists( 'mission_ready_setup' ) ) {
 	
@@ -104,3 +115,7 @@ function load_stylesheets()
 }
 add_action('wp_enqueue_scripts', 'load_stylesheets');
 
+/**
+ * additional custom functions functions
+ */
+require_once "inc/custom.php";
