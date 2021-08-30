@@ -57,6 +57,8 @@ if ( ! function_exists( 'mission_ready_setup' ) ) {
 		register_nav_menus(
 			array(
 				'primary' => esc_html__( 'Primary', 'missionready' ),
+				'footer' => esc_html__('Footer', 'missionready'),
+				'nav-menu' => esc_html__('Nav', 'missionready')
 			)
 		);
 

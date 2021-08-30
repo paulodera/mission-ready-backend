@@ -47,7 +47,7 @@
                  * throttle limit on numberposts variable
                  */
                 $args = array(
-                    'numberposts' => 2,
+                    'numberposts' => 4,
                     'post_type' => 'townhall'
                 );
                 

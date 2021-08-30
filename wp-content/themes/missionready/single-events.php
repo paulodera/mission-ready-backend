@@ -41,14 +41,17 @@
       </div>
       <div class="modal-body">
         <div class="modal-newsletter-wrap">
-                <form class="eventmodal-form" action="" method="post">
+                <form class="eventmodal-form" action="" method="post" id="book-now">
+                <?php wp_nonce_field('my_nonce'); ?>
+                <input type="hidden" name="event" id="event" value="<?php the_title(); ?>">
                   <div class="form-group">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required="" autocomplete="off">
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control" name="email" id="name" placeholder="Your email" required="" autocomplete="off">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your email" required="" autocomplete="off">
                   </div>
-                    <button type="submit" id="submit">Submit</button>
+                  <div id="message" style="color:green;"></div>
+                    <button type="submit" id="book">Submit</button>
                 </form>
                  
               </div>
@@ -135,3 +138,46 @@
   </main>
 
 <?php get_footer(); ?>
+
+<script>
+  $('#book-now').submit((e) => {
+    e.preventDefault();
+    let name = $('#name').val();
+    let email = $('#email').val();
+    let _wpnonce = $('#_wpnonce').val();
+    let event = $('#event').val();
+
+    $.ajax({
+      type: 'POST',
+      url: "<?php echo admin_url('admin-ajax.php'); ?>",
+      data: {
+        action: "book_now",
+        email: email,
+        event: event,
+        name: name,
+        _wpnonce: _wpnonce
+
+      },
+      dataType: 'html',
+      cache: false,
+      beforeSubmit: () => {
+        $("#book").attr('disabled', 'disabled');
+
+      },
+      success: (res) => {
+        if(res === 1) {
+          $('#message').html("Not booked, please try again later");
+          
+        } else {
+          $('#message').html("Here’s to staying customer-obsessed");
+          $('#name').val('');
+          $('#email').val('');
+
+        }
+        
+
+      }
+    });
+
+  })
+</script>

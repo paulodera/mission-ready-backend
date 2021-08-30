@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-12 mx-auto">
             <div class="share-form-text">
-              <h2><?php echo $intro['title']; ?></h2>
+              <?php echo $intro['title']; ?>
               <p><?php the_content() ?></p>
               <form class="contact-form" method="post" action="" id="share-story" enctype="multipart/form-data">
                   <?php echo wp_nonce_field('my_nonce'); ?>

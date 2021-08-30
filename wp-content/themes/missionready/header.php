@@ -41,8 +41,19 @@
                 <div class="expand-btn-inner">
                   <div class="menu-btnarea">
                     <ul>
-                      <li><a href="#" class="main-btn">Our Agile Journey</a></li>
-                      <li><a href="#" class="main-btn main-btn-outlined">Fit for 20</a></li>
+                    <?php
+                      $cpi = get_the_id();
+                      $locations = get_nav_menu_locations();
+                      $menu_id = $locations['nav-menu'];
+                      $nav_items = wp_get_nav_menu_items($menu_id);
+
+                      foreach( $nav_items as $nav):
+                        $current_menu = $nav->object_id;
+                    ?>
+
+                        <li><a href="<?php echo $nav->url; ?>" class="main-btn <?php if($nav->title == "Fit for 20"): ?>main-btn-outlined <?php endif; ?>"><?php echo $nav->title; ?></a></li>
+
+                    <?php endforeach; ?>
                     </ul>
                   </div>
                   <div id="nav-expander" class="nav-expander style2">

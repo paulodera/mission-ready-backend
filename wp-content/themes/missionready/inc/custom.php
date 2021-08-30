@@ -318,3 +318,106 @@ function my_update_attachment($f,$pid,$t='',$c='') {
       }
     }
 }
+
+add_action('wp_ajax_book_now', 'book_now', 0);
+add_action('wp_ajax_nopriv_book_now', 'book_now');
+function book_now()
+{
+    $event = stripslashes($_POST['event']);
+    $name = stripslashes($_POST['name']);
+    $email = stripslashes($_POST['email']);
+    $new_post = wp_insert_post( array(
+        'post_title' => $name. ' - '. $event,
+        'post_type' => 'booking',
+        'post_status' => 'private'
+    ) );
+
+    if($new_post) {
+        update_field('email', $email, $new_post);
+        update_field('event', $event, $new_post);
+        $saved = true;
+
+    } else {
+        $saved = false;
+
+    }
+
+    if($saved == true)
+    {
+        echo 0;
+
+    } else {
+        echo 1;
+
+    }
+
+}
+
+add_action('wp_ajax_user_subscribe', 'user_subscribe', 0);
+add_action('wp_ajax_nopriv_user_subscribe', 'user_subscribe');
+function user_subscribe()
+{
+    $subscriber = stripslashes($_POST['subscriber']);
+    $new_post = wp_insert_post( array(
+        'post_title' => $subscriber,
+        'post_type' => 'subscription',
+        'post_status' => 'private'
+    ) );
+
+    if($new_post) {
+
+        echo "<h3 class='success' style='color: green'>Thank you for subscribing</h3>";
+
+    } else {
+        echo "<h3 class='success' style='color: red'>an error occured while saving</h3>";
+    }
+}
+
+add_action('wp_ajax_user_post_love', 'user_post_love', 0);
+add_action('wp_ajax_nopriv_user_post_love', 'user_post_love');
+function user_post_love()
+{
+    global $wpdb;
+    $likes = strip_tags($_POST['likes']);
+    $userid = $_COOKIE['my_cookie'];
+    $postid = strip_tags($_POST['postid']);
+
+    $total_likes = $wpdb->get_var("SELECT COUNT(*) FROM mr_post_like where post_id='" . $postid . "' and user_id='" . $userid . "'");
+
+    if ($total_likes == 0) {
+
+
+        $wpdb->insert(
+            'mr_post_like',
+            array(
+                'post_id' => $postid,
+                'user_id' => $userid,
+            ),
+            array(
+                '%d', '%d',
+            )
+        );
+
+        echo $likes + 1;
+
+    } else {
+
+        $xa = $wpdb->query("DELETE from mr_post_like where post_id='" . $postid . "' and user_id='" . $userid . "'");
+
+        $res = $wpdb->get_var("SELECT COUNT(*) FROM mr_post_like where post_id='" . $postid . "'");
+
+        echo $res;
+
+    }
+
+    die();
+}
+
+
+function getPostFromSlug( $slug_or_id, $post_type ) {
+    if( is_numeric( $slug_or_id ) ) {
+        return $slug_or_id;
+    }
+    return get_page_by_path( $slug_or_id, OBJECT, $post_type );
+}
+

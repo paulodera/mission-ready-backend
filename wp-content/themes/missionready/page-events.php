@@ -10,6 +10,7 @@
           <div class="text-editorbanner">
             <h2><?php the_title(); ?></h2>
           </div>
+            <div style="color:#FFFFFF;"> It’s the activities below that reflect on how we work to stay customer obsessed as a team.</div>
         </div>
       </div>
     </div>
@@ -57,7 +58,7 @@
                             </div>
                             <!-- Slot info end -->
                         </div>
-                        <div class="event-timeline"><p>07Hrs 59Mn to go</p></div>
+                        <!-- <div class="event-timeline"><p>07Hrs 59Mn to go</p></div> -->
                     </div>
                 </a>
             </div>

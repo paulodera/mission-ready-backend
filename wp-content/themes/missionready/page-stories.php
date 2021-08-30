@@ -11,6 +11,13 @@
             <h2><?php the_title(); ?></h2>
           </div>
         </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="bannercontent btn-stories">
+            <div class="event-button">
+              <a href="<?php echo esc_url( get_page_link( getPostFromSlug( 'share', 'page' ) ) ); ?>" class="main-btn">Tell your story</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

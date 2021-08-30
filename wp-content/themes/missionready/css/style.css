@@ -3153,6 +3153,14 @@ span.time-posted {
 .single-story:hover a{
 	color: #FFF;
 }
+.bannercontent.btn-stories {
+  background: transparent;
+  text-align: right;
+}
+.bannercontent.btn-stories .main-btn {
+  background: #FFF;
+  color: #2bb24a;
+}
 
 
 /* ---------------------------------------------------
@@ -3222,7 +3230,8 @@ span.time-posted {
     font-size: 3rem;
 }
 .hero-banner-bg {
-    min-height: 70vh;
+  min-height: 70vh;
+  background-position: top right !important;
 }
 .quote-tp-content .content blockquote {
     font-size: 16px;
@@ -3300,6 +3309,9 @@ span.time-posted {
 }
 .share-form-text h2 {
     font-size: 3rem;
+}
+.bannercontent.btn-stories .event-button {
+  text-align: left;
 }
 }
 @media screen and (max-width:900px){
@@ -3406,6 +3418,9 @@ h4.timeline-year {
 .share-top-text h4 {
     font-size: 14px;
     letter-spacing:1px;
+}
+.inside-banner {
+  background-position: center;
 }
 }
 @media screen and (max-width:480px){
